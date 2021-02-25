@@ -1,0 +1,7 @@
+version: '3'
+services:
+  monitoring:
+    container_name: $IMAGE_NAME
+    image: $DOCKER_USER/$IMAGE_NAME:$BUILD_TAG
+    ports:
+      - "80:80"
