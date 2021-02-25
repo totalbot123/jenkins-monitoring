@@ -2,7 +2,7 @@
 
 APP_PATH=$HOME/monitoring
 
-docker run --rm -ti $IMAGE_NAME:$BUILD_TAG-SIT pytest tests/ > unit.txt
+docker run --rm -ti $JOB_NAME:$BUILD_ID-SIT pytest tests/ > unit.txt
 FAIL=$(cat unit.txt | grep "fail")
 
 cat unit.txt
@@ -13,7 +13,7 @@ fi
 
 CONTAINER=monitoring
 
-docker run --name=$CONTAINER -p 8000:80 -d $IMAGE_NAME:$BUILD_TAG-SIT
+docker run --name=$CONTAINER -p 8000:80 -d $JOB_NAME:$BUILD_ID-SIT
 
 sleep 3
 

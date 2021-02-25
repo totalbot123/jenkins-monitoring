@@ -2,6 +2,7 @@ pipeline {
   agent any 
 
   environment {
+    DOCKER_USER = 'totalbot123'
     PASS = credentials('docker-hub-pass') 
   }
 

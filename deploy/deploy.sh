@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo $IMAGE_NAME > /tmp/.auth
-echo $BUILD_TAG >> /tmp/.auth 
+echo $JOB_NAME > /tmp/.auth
+echo $BUILD_ID >> /tmp/.auth 
 echo $PASS >> /tmp/.auth 
 echo $DOCKER_USER >> /tmp/.auth
 
