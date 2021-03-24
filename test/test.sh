@@ -2,7 +2,7 @@
 
 APP_PATH=$HOME/monitoring
 
-docker run --rm -ti $JOB_NAME:$BUILD_ID-SIT pytest tests/ > unit.txt
+docker run --rm -ti $JOB_NAME:$BUILD_NUMBER-SIT pytest tests/ > unit.txt
 FAIL=$(cat unit.txt | grep "fail")
 
 cat unit.txt
@@ -11,9 +11,7 @@ if [[ $FAIL != "" ]]; then
   exit 1
 fi
 
-CONTAINER=monitoring
-
-docker run --name=$CONTAINER -p 8000:80 -d $JOB_NAME:$BUILD_ID-SIT
+docker run --name=$JOB_NAME -p 8000:80 -d $JOB_NAME:$BUILD_NUMBER-SIT
 
 sleep 3
 
@@ -28,4 +26,4 @@ if [[ $SUCCESS != "Successfully passed all tests!" ]]; then
   echo "FAIL!" && exit 1
 fi
 
-docker stop $CONTAINER 1>/dev/null && docker rm $CONTAINER 1>/dev/null
+docker stop $JOB_NAME 1>/dev/null && docker rm $JOB_NAME 1>/dev/null
