@@ -12,8 +12,7 @@ if [[ $FAIL != "" ]]; then
 fi
 
 cd $APP_PATH/integration
-SUCCESS=$(docker run --rm $JOB_NAME:$BUILD_NUMBER-SIT bash -c "./integration/integrationTests.sh"
-
+SUCCESS=$(docker run --rm $JOB_NAME:$BUILD_NUMBER-SIT bash -c "./integration/integrationTests.sh")
 
 if [[ $SUCCESS != "Successfully passed all tests!" ]]; then
   echo "FAIL!" && exit 1
