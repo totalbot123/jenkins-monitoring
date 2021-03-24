@@ -11,7 +11,6 @@ if [[ $FAIL != "" ]]; then
   exit 1
 fi
 
-docker stop $JOB_NAME 1>/dev/null && docker rm $JOB_NAME 1>/dev/null
 docker run --name=$JOB_NAME -p 8000:80 -d $JOB_NAME:$BUILD_NUMBER-SIT
 
 sleep 3

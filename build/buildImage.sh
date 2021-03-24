@@ -4,7 +4,6 @@ ENV=$HOME/environment
 APP_PATH="$HOME/monitoring"
 
 cd "$APP_PATH"
-git pull origin master
 
 # Build sit image
 cp $ENV/sitSettings.json $APP_PATH/flask_web/saml/settings.json
