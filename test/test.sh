@@ -11,19 +11,10 @@ if [[ $FAIL != "" ]]; then
   exit 1
 fi
 
-docker run --name=$JOB_NAME -p 8000:80 -d $JOB_NAME:$BUILD_NUMBER-SIT
+cd $APP_PATH/integration
+SUCCESS=$(docker run --rm $JOB_NAME:$BUILD_NUMBER-SIT bash -c "./integration/integrationTests.sh"
 
-sleep 3
 
-cd $APP_PATH
-./integration/integrationTests.sh > integration.txt
-
-cat integration.txt
-
-SUCCESS=$(tail -1 integration.txt)
-rm integration.txt
 if [[ $SUCCESS != "Successfully passed all tests!" ]]; then
   echo "FAIL!" && exit 1
 fi
-
-docker stop $JOB_NAME 1>/dev/null && docker rm $JOB_NAME 1>/dev/null
