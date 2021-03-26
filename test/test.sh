@@ -12,6 +12,7 @@ if [[ $FAIL != "" ]]; then
 fi
 
 docker run --name=$JOB_NAME -d $JOB_NAME:$BUILD_NUMBER-SIT
+sleep 5
 docker exec $JOB_NAME bash -c "cd integration && ./integrationTests.sh" >> success.txt
 SUCCESS=$(cat success.txt)
 rm success.txt
