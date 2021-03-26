@@ -18,6 +18,6 @@ SUCCESS=$(cat success.txt)
 rm success.txt
 docker stop $JOB_NAME 1>/dev/null && docker rm $JOB_NAME 1>/dev/null
 
-#if [[ $SUCCESS != "Successfully passed all tests!" ]]; then
-#  echo "FAIL!" && exit 1
-#fi
+if [[ $SUCCESS != "Successfully passed all tests!" ]]; then
+  echo "FAIL!" && exit 1
+fi
